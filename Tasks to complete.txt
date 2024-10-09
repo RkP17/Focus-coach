@@ -1,0 +1,12 @@
+Tasks to complete:
+-Create a UI for To do list stage
+  -Must be able to add tasks. (Title, description, deadline)
+  -Must be able to move elements between 'To do',  'In Progress', and 'Complete'
+
+
+-Create a UI for Calendar
+  -Must display tasks under the correct date due. 
+
+-Create a UI for Pomodoro Timer
+-Create a UI for Site Blocker
+-Create a UI for Reports
