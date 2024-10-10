@@ -25,6 +25,7 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>React App</title>
+    <link rel="stylesheet" href="index.css">
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
@@ -39,5 +40,19 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+<div class="container">
+  <div class="todo">
+    <h2><img src="logo192.png" alt=""> To do </h2>
+    <div class="addtask">
+      <input type="text" id="input-box" placeholder="What do you have to do?">
+      <button>Add</button>
+    </div>
+    <ul id="list container">
+      <li class="item">Task 1
+        <i class="uil uil-draggabledots"></i>
+      </li>
+    </ul>
+  </div>
+  </div>
   </body>
 </html>
