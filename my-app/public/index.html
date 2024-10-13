@@ -26,9 +26,9 @@
     -->
     <title>React App</title>
     <link rel="stylesheet" href="index.css">
-    <!--
+    
     <script src="drag.js" defer> </script>
-    <script src="todo.js"> defer </script> -->
+    <script src="todo.js"> defer </script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
@@ -47,16 +47,11 @@
 <div class="container">
   <div class="todo">
     <h2><img src="logo192.png" alt=""> To do </h2>
-    <div class="addtask">
-      <input type="text" id="input-box" placeholder="What do you have to do?">
+    <form id="todo-form">
+      <input type="text" id="input-box" placeholder="What do you have to do?" id="todo-input">
       <button class="kanban-add">Add</button>
-    </div>
+    </form>
     <div class="kanbanboard">
-      <form id="todo-form">
-        <input type="text" id="input-box" placeholder="What do you have to do?" id="todo-input">
-        <button class="kanban-add">Add</button>
-      </form>
-
       <div class="lanes">
         <div class="lane" id="lane-one">
           <h3 class="heading">To do</h3>
