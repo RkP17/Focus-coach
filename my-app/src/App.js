@@ -1,12 +1,23 @@
-import PomodoroTimer from '/Users/rajveerpatter/Documents/GitHub/Focus-coach/my-app/src/Componenets/PomorodoTimer.js';
+import React from 'react';
 import './App.css';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'; // Importing React Router components
+import NavBar from "./Componenets/NavBar.js"
+import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 
 function App() {
   return (
-    <div className="App">
-      <h1> Welcome to Focus coach </h1>
-    </div>
+    
+    <>
+      <Router>
+          <NavBar />
+        <Routes>
+          <Route paths= "/" element={<h2>Home Page</h2>}/>
+        </Routes>
+      </Router>
+      
+
+     </>
+      
+     
   );
 }
 
