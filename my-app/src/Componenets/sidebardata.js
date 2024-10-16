@@ -1,43 +1,42 @@
 import React from 'react';
-import * as FaIcons from 'react-icons/fa';
+//import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
-import * as IoIcons from 'react-icons/io';
+//import * as IoIcons from 'react-icons/io';
+import { TfiCheckBox,TfiCalendar} from "react-icons/tfi";
+
+import { FaClock } from "react-icons/fa";
+
 
 export const SidebarData = [
+    {
+        title: 'DashBoard',
+        path: '/',
+        icon: <AiIcons.AiFillHome />,
+        cName: 'nav-text'
+      },
   {
-    title: 'Home',
-    path: '/',
-    icon: <AiIcons.AiFillHome />,
+    title: 'To Do List',
+    path: '/src/Pages/ToDoList.js',
+    icon: <TfiCheckBox />,
     cName: 'nav-text'
   },
   {
-    title: 'Reports',
-    path: '/reports',
-    icon: <IoIcons.IoIosPaper />,
+    title: 'Calendar',
+    path: '/src/Pages/Calendar.js',
+    icon: <TfiCalendar />,
     cName: 'nav-text'
   },
   {
-    title: 'Products',
-    path: '/products',
-    icon: <FaIcons.FaCartPlus />,
+    title: 'Pomodoro Timer',
+    path: '/src/Pages/PomorodoTimer.js',
+    icon: <FaClock />,
     cName: 'nav-text'
   },
   {
-    title: 'Team',
-    path: '/team',
-    icon: <IoIcons.IoMdPeople />,
+    title: 'SiteBlocker',
+    path: '/src/Pages/SiteBlocker.js',
+    icon: <TfiCalendar />,
     cName: 'nav-text'
   },
-  {
-    title: 'Messages',
-    path: '/messages',
-    icon: <FaIcons.FaEnvelopeOpenText />,
-    cName: 'nav-text'
-  },
-  {
-    title: 'Support',
-    path: '/support',
-    icon: <IoIcons.IoMdHelpCircle />,
-    cName: 'nav-text'
-  }
+ 
 ];
