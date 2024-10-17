@@ -16,25 +16,25 @@ export const SidebarData = [
       },
   {
     title: 'To Do List',
-    path: '/src/Pages/ToDoList.js',
+    path: '/todolist',
     icon: <TfiCheckBox />,
     cName: 'nav-text'
   },
   {
     title: 'Calendar',
-    path: '/src/Pages/Calendar.js',
+    path: '/calendar',
     icon: <TfiCalendar />,
     cName: 'nav-text'
   },
   {
     title: 'Pomodoro Timer',
-    path: '/src/Pages/PomorodoTimer.js',
+    path: '/timer',
     icon: <FaClock />,
     cName: 'nav-text'
   },
   {
     title: 'SiteBlocker',
-    path: '/src/Pages/SiteBlocker.js',
+    path: '/siteblocker',
     icon: <TfiCalendar />,
     cName: 'nav-text'
   },

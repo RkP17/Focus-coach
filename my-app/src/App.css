@@ -7,7 +7,7 @@
   font-family: 'Lato', sans-serif;
 }
 
-.Dashboard, .Calendar, .PomorodoTimer, .SiteBlocker, .ToDoLoist {
+.Dashboard, .Calendar, .PomorodoTimer, .SiteBlocker, .ToDoList {
   display:flex;
   height: 90vh;
   align-items: center;
