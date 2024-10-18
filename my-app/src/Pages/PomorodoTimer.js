@@ -2,6 +2,8 @@ import React from 'react'
 import './pomodoroTimer.css';
 import { useEffect, useRef } from "react"
 import { CountdownCircleTimer } from 'react-countdown-circle-timer'
+import { IoIosPlayCircle } from "react-icons/io";
+import PlayButton from "../Componenets/PlayButton";
 
 const renderTime = ({ remainingTime }) => {
   if (remainingTime === 0) {
@@ -33,6 +35,14 @@ function PomorodoTimer() {
         >
           {renderTime}
         </CountdownCircleTimer>
+      </div>
+
+      <div className='play-button'>
+        <PlayButton>
+          <IoIosPlayCircle />
+
+        </PlayButton>
+      
       </div>
 
     </div>
