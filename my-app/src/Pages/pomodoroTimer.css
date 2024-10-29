@@ -10,17 +10,28 @@ h1 {
     justify-content: center;
     height: 80px;
     margin-bottom: 40px;
+    margin-top: 40px;
     text-align: center;
 
     
 }
 
-  .timer-wrapper {
-    display: flex;
-    justify-content: center;
-    height: 100vh;
-    width: 500px;
-  }
+.timer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; 
+  gap: 20px; 
+}
+
+
+.timer-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0; /* Remove any extra margin */
+}
+
   
   .timer {
     font-family: "Montserrat";
@@ -44,4 +55,41 @@ h1 {
     text-align: center;
     font-size: 16px;
     
+
   }
+
+  .play-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-right: 20px; /* Space between timer and play button */
+    cursor: pointer;
+  }
+ 
+  .setting-button {
+    width: auto;
+    background-color:  rgb(16, 69, 92);
+    display: flex; /* Align icon and text horizontally */
+    flex-direction:row;
+    align-items: center; 
+    /*align-items: left; /* Center the icon and text */
+    margin-top: 20px; /* Add some space around the button */
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    
+  }
+ 
+
+  .setting-button span {
+    width: 80px;
+    font-size: 25px; /* Size of the text */
+    color: white; /* Text color */
+    font-family: Arial, sans-serif;
+  }
+
+  /*
+  .play-button svg:hover {
+    color: #0056b3;  
+  } */

@@ -11,6 +11,7 @@ import PomorodoTimer from './Pages/PomorodoTimer';
 function App() {
   return (
     
+    
     <>
       <Router>
           <NavBar />
