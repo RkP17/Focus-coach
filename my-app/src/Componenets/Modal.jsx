@@ -10,8 +10,8 @@ import SettingsContext from './settingsContext';
 
 
 export const Modal = ({closeModal}) => {
-  const settingsInfo = useContext(SettingsContext);
-
+  //const settingsInfo = useContext(SettingsContext);
+  const { workMinutes, setWorkMinutes, breakMinutes, setBreakMinutes } = useContext(SettingsContext);
     return(
         <div className={styles.modalBack}>
           <div className={styles.modalContainer}>
@@ -22,22 +22,24 @@ export const Modal = ({closeModal}) => {
                 </button>
             </div>
             <div className={styles.modalBody}>
-                <label>Work Minutes:</label>
+                <label>Work : {workMinutes}:00</label>
                 <ReactSlider
                   className={styles.slider}
                   thumbClassName={styles.thumb}
                   trackClassName={'track'}
-                  value={45}
-                  min={1}
+                  value={workMinutes}
+                  onChange={(value) => setWorkMinutes(value)}
+                  min={0.20}
                   max={120}  
                 /> 
-                <lable>Break Minutes:</lable>  
+                <lable>Break : {breakMinutes}:00</lable>  
                 <ReactSlider
                   className={styles.greenSlider}
                   thumbClassName={styles.greenThumb}
                   trackClassName={'track'}
-                  value={5}
-                  min={1}
+                  value={breakMinutes}
+                  onChange={(value)=>setBreakMinutes(value)}
+                  min={0.3}
                   max={120}  
                 /> 
             </div>

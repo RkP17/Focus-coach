@@ -7,11 +7,13 @@ import Calendar from './Pages/Calendar';
 import ToDoList from './Pages/ToDoList';
 import SiteBlocker from './Pages/SiteBlocker';
 import PomorodoTimer from './Pages/PomorodoTimer';
+//import SettingsContex from './Componenets/settingsContext'
 
 function App() {
+  
   return (
     
-    
+  
     <>
       <Router>
           <NavBar />
@@ -26,6 +28,8 @@ function App() {
       
 
      </>
+
+     
       
      
   );
