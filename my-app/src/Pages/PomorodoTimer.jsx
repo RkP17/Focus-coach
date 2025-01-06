@@ -9,20 +9,13 @@ import PlayButton from "../Componenets/PlayButton.js";
 import {Modal} from "../Componenets/Modal.jsx";
 import SettingsContext from '../Componenets/settingsContext'
 import soundFile from '../Componenets/mixkit-relaxing-bell-chime-3109.wav';
-
-//import Modal from "src/Componenets/Modal.js";
-
-// make the time show on the screen 
-// be able to press play once enteringf the screen 
-// make settings button look better (\_ - - _/)
-// sort the break out aswell
-// once the timer is fincished fo straigfht onto the break but stay paused
-// when we start the timer then pause na dchange the timer it doesn't change to the 40:00 it changes to 39:20 like it takes the seconds off from the prev
+import { IoReloadCircle } from "react-icons/io5";
+import { set } from 'date-fns';
 
 
 const renderTime = ({ remainingTime }) => {
-
-  const minutes=Math.floor(remainingTime/60);
+  const hours=Math.floor(remainingTime/3600)
+  const minutes=Math.floor((remainingTime%3600)/60);
   const seconds=remainingTime%60;
 
   if (remainingTime === 0) {
@@ -31,13 +24,17 @@ const renderTime = ({ remainingTime }) => {
 
   return (
     <div className="timer">
-      <div className="value">{minutes}:{seconds<10 ? `0${seconds}` : seconds}</div>
+      <div className="value">
+        {hours > 0 ? `${hours}:` :''}
+        {minutes < 10 ? `0${minutes}` : minutes}:
+        {seconds < 10 ? `0${seconds}` : seconds}</div>
     </div>
   );
 }
 
 function PomorodoTimer() {  
   // Modal
+   
   const[showModal, setShowModal] = useState(false);
   const[workMinutes,setWorkMinutes]=useState(25);
   const[breakMinutes,setBreakMinutes]=useState(5);
@@ -47,8 +44,15 @@ function PomorodoTimer() {
 
   const[mode,setMode]=useState('work'); // work / break
 
+  const [headerText,setHeaderText]=useState("");
+
   const[secondsLeft,setSecondsLeft]=useState(0);
+
+  const [resetToggle, setResetToggle] = useState(false);
+
+  
   const modeRef=useRef(mode);
+
 
   useEffect(() => {
     modeRef.current = mode;
@@ -57,8 +61,19 @@ function PomorodoTimer() {
   useEffect(() => {
     setSecondsLeft(workMinutes * 60);
   }, [workMinutes]);
+
   
   
+  function reload() {
+   
+    setIsPlaying(false);
+    setIsPaused(true);
+  
+    // Temporarily set to a different value, then reset to 25:00
+    setSecondsLeft(25*60);
+   
+  }
+    
   // create the fiunction switch mode 
   function switchMode(){
     const nextMode = modeRef.current === 'work' ? 'break' : 'work';
@@ -70,7 +85,7 @@ function PomorodoTimer() {
     const audio = new Audio(soundFile);
     audio.play();
   }
-
+  
 
   function openModal() {
     setShowModal(true);
@@ -96,7 +111,7 @@ function PomorodoTimer() {
 
   ];
 
-  const [headerText,setHeaderText]=useState("");
+  
 
   useEffect ( () => {
     const randomPhrase = phrases[Math.floor(Math.random()*phrases.length)];
@@ -117,7 +132,7 @@ function PomorodoTimer() {
         <CountdownCircleTimer
           key={`${mode}-${workMinutes}-${breakMinutes}`} 
           isPlaying={!isPaused && isPlaying}
-          duration={secondsLeft} // need to change the timer
+          duration={secondsLeft} 
           strokeWidth={40}
           colors={mode === "work" ?  ["#F44336","#ffa500","#ffff00","#f5f5f5"] :["#32cd32","#7fffd4","#66cdaa","#e0ffff"]}
           colorsTime={[10, 6, 2, 0]}
@@ -136,12 +151,19 @@ function PomorodoTimer() {
       
 
       <div className="buttons-container">
+
+        <div className="reload-button">
+          <button onClick={reload} className="reload-button">
+            <IoReloadCircle size={75} />
+          </button>
+        </div>
+
         {/* Play/Pause Buttons */}
         
         <div className="play-button">
           {isPlaying ? (
             <FaPauseCircle 
-                size={70}
+                size={90}
                 onClick = {()=> {
                   setIsPlaying(false);
                   setIsPaused(true);
@@ -149,7 +171,7 @@ function PomorodoTimer() {
               />
           ):(
           <IoIosPlayCircle 
-            size={80}
+            size={100}
             onClick={() => {
               setIsPlaying(true);
               setIsPaused(false);
@@ -157,9 +179,8 @@ function PomorodoTimer() {
           
           />)}
         </div>
-          
-        
 
+        
         {/* Settings Button */}
         <SettingsContext.Provider value={{
           workMinutes,
@@ -167,11 +188,13 @@ function PomorodoTimer() {
           breakMinutes,
           setBreakMinutes,
         }}>
+
         <div className="settings-container">
           <button onClick= {openModal} className="setting-button">
-            <IoSettings size={50} />
+            <IoSettings size={48} />
           </button>
         </div>
+
         {/* Modal */}
         {showModal && <Modal closeModal={closeModal} />}
         </SettingsContext.Provider>

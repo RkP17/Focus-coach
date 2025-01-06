@@ -20,24 +20,24 @@ h3 {
 }
 
 .quoteBox {
-  background-color: rgba(255, 255, 255, 0.1); /* Light semi-transparent box */
-  padding: 10px 25px;        /* Add padding inside the box */
-  border-radius: 10px;       /* Rounded corners for the box */
-  text-align: center;        /* Center-align the content */
-  margin: 20px auto;         /* Center the box horizontally and add spacing */
-  max-width: 900px;          /* Limit the box width */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+  background-color: rgba(255, 255, 255, 0.1); 
+  padding: 10px 25px;        
+  border-radius: 10px;       
+  text-align: center;        
+  margin: 20px auto;         
+  max-width: 900px;          
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); 
   height: 110px;
   width:900px;
   margin-bottom: 60px;
 }
 
 .quoteLine {
-  border: none;              /* Remove default border */
-  border-top: 2px solid #ffffff; /* Thin white line */
-  margin: 15px auto 0;       /* Add spacing above and below */
-  width: 80%;                /* Center and limit the line width */
-  opacity: 0.8;              /* Slightly transparent */
+  border: none;              
+  border-top: 2px solid #ffffff; 
+  margin: 15px auto 0;       
+  width: 80%;                
+  opacity: 0.8;              
   
 }
 
@@ -105,19 +105,30 @@ h3 {
     border-radius: 90%;
     
   }
+
+  .reload-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    border-radius: 100%;
+    border: none;
+    outline: none;
+  }
+  
  
   .setting-button {
     display: flex; /* Align icon and text horizontally */
     justify-content: center;
     align-items: center;
     width: auto;
-    /*background-color:  rgb(27, 101, 130);
-    /*flex-direction:row;
-    align-items: center; 
-    /*align-items: left; /* Center the icon and text */
+    color: #0c0749;
     border-radius: 60%;
     padding: 10px;
     cursor: pointer;
+    outline: none;
+    border: none;
   }
 
   
