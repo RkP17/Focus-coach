@@ -42,7 +42,7 @@ function PomorodoTimer() {
   const[workMinutes,setWorkMinutes]=useState(25);
   const[breakMinutes,setBreakMinutes]=useState(5);
 
-  const[isPaused,setIsPaused]=useState(false);
+  const[isPaused,setIsPaused]=useState(true);
   const[isPlaying,setIsPlaying]=useState(false);
 
   const[mode,setMode]=useState('work'); // work / break
@@ -58,7 +58,6 @@ function PomorodoTimer() {
     setSecondsLeft(workMinutes * 60);
   }, [workMinutes]);
   
-
   
   // create the fiunction switch mode 
   function switchMode(){
@@ -76,6 +75,7 @@ function PomorodoTimer() {
   function openModal() {
     setShowModal(true);
     setIsPaused(true);
+    setIsPlaying(false);
   }
 
   const closeModal = () => {
@@ -83,18 +83,44 @@ function PomorodoTimer() {
     setIsPaused(false);
   }
 
+  const phrases = [
+    "“The question isn’t who is going to let me; it’s who is going to stop me.” ",
+    "“Never allow a person to tell you no, who doesn’t have the power to say yes.”",
+    "“Whether you think you can or think you can’t, you’re right.” ",
+    "“Never confuse a single defeat with a final defeat.” ",
+    "“Perseverance is failing 19 times and succeeding the 20th.”",
+    "“If you think you are too small to make a difference, try sleeping with a mosquito.”",
+    "“You are never too old to set another goal or to dream a new dream.”",
+    "“A goal properly set is halfway reached.”",
+    "“A goal should scare you a little and excite you a lot.”",
+
+  ];
+
+  const [headerText,setHeaderText]=useState("");
+
+  useEffect ( () => {
+    const randomPhrase = phrases[Math.floor(Math.random()*phrases.length)];
+    setHeaderText(randomPhrase);
+
+  },[]);
+
   return (
     <div className=" timer">
-      <h1> PomorodoTimer </h1>
+      <div class="quoteBox">
+      <h3>
+        {headerText}
+      </h3>
+     
+    </div>
 
       <div className="timer-wrapper">
         <CountdownCircleTimer
+          key={`${mode}-${workMinutes}-${breakMinutes}`} 
           isPlaying={!isPaused && isPlaying}
           duration={secondsLeft} // need to change the timer
-          key={mode}
           strokeWidth={40}
-          colors={["red", "#F7B801", "#A30000", "#ffffff"]}
-          colorsTime={[6, 3, 0]}
+          colors={mode === "work" ?  ["#F44336","#ffa500","#ffff00","#f5f5f5"] :["#32cd32","#7fffd4","#66cdaa","#e0ffff"]}
+          colorsTime={[10, 6, 2, 0]}
           onComplete={() => {
             switchMode();
             setIsPlaying(false);
@@ -107,25 +133,32 @@ function PomorodoTimer() {
         </CountdownCircleTimer>
       </div>
 
+      
+
       <div className="buttons-container">
         {/* Play/Pause Buttons */}
+        
         <div className="play-button">
+          {isPlaying ? (
+            <FaPauseCircle 
+                size={70}
+                onClick = {()=> {
+                  setIsPlaying(false);
+                  setIsPaused(true);
+                }}
+              />
+          ):(
           <IoIosPlayCircle 
             size={80}
             onClick={() => {
               setIsPlaying(true);
               setIsPaused(false);
             }}
-
-           />
-          <FaPauseCircle 
-            size={70}
-            onClick = {()=> {
-              setIsPlaying(false);
-              setIsPaused(true);
-            }}
-           />
+          
+          />)}
         </div>
+          
+        
 
         {/* Settings Button */}
         <SettingsContext.Provider value={{
@@ -136,7 +169,7 @@ function PomorodoTimer() {
         }}>
         <div className="settings-container">
           <button onClick= {openModal} className="setting-button">
-            <IoSettings size={60} />
+            <IoSettings size={50} />
           </button>
         </div>
         {/* Modal */}

@@ -29,7 +29,7 @@ export const Modal = ({closeModal}) => {
                   trackClassName={'track'}
                   value={workMinutes}
                   onChange={(value) => setWorkMinutes(value)}
-                  min={0.20}
+                  min={1}
                   max={120}  
                 /> 
                 <lable>Break : {breakMinutes}:00</lable>  
@@ -39,7 +39,7 @@ export const Modal = ({closeModal}) => {
                   trackClassName={'track'}
                   value={breakMinutes}
                   onChange={(value)=>setBreakMinutes(value)}
-                  min={0.3}
+                  min={1}
                   max={120}  
                 /> 
             </div>
