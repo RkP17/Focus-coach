@@ -2,15 +2,15 @@ import React, {useState} from 'react'
 import './pomodoroTimer.css';
 import { useEffect, useRef } from "react"
 import { CountdownCircleTimer } from 'react-countdown-circle-timer'
-import { IoIosPlayCircle } from "react-icons/io";
-import { IoSettings } from "react-icons/io5";
-import { FaPauseCircle } from "react-icons/fa";
-import PlayButton from "../Componenets/PlayButton.js";
+import { CiPlay1 } from "react-icons/ci";
+import { CiSettings } from "react-icons/ci";
+import { CiPause1 } from "react-icons/ci";
+import { IoReload } from "react-icons/io5";
 import {Modal} from "../Componenets/Modal.jsx";
 import SettingsContext from '../Componenets/settingsContext'
 import soundFile from '../Componenets/mixkit-relaxing-bell-chime-3109.wav';
-import { IoReloadCircle } from "react-icons/io5";
-import { set } from 'date-fns';
+
+
 
 
 const renderTime = ({ remainingTime }) => {
@@ -18,9 +18,6 @@ const renderTime = ({ remainingTime }) => {
   const minutes=Math.floor((remainingTime%3600)/60);
   const seconds=remainingTime%60;
 
-  if (remainingTime === 0) {
-    return <div className="timer">Done!</div>;
-  }
 
   return (
     <div className="timer">
@@ -32,7 +29,9 @@ const renderTime = ({ remainingTime }) => {
   );
 }
 
+
 function PomorodoTimer() {  
+
   // Modal
    
   const[showModal, setShowModal] = useState(false);
@@ -45,53 +44,53 @@ function PomorodoTimer() {
   const[mode,setMode]=useState('work'); // work / break
 
   const [headerText,setHeaderText]=useState("");
-
   const[secondsLeft,setSecondsLeft]=useState(0);
 
-  const [resetToggle, setResetToggle] = useState(false);
+  const [remainingTime, setRemainingTime] = useState(workMinutes * 60);
+  const [timerKey, setTimerKey] = useState(0);
 
-  
   const modeRef=useRef(mode);
-
+  
+  const videoURL = "https://www.youtube.com/embed/TtkFsfOP9QI";
 
   useEffect(() => {
     modeRef.current = mode;
   }, [mode]);
-  
+
   useEffect(() => {
-    setSecondsLeft(workMinutes * 60);
+    setRemainingTime(workMinutes * 60);
   }, [workMinutes]);
 
+
+
   
-  
-  function reload() {
-   
-    setIsPlaying(false);
-    setIsPaused(true);
-  
-    // Temporarily set to a different value, then reset to 25:00
-    setSecondsLeft(25*60);
-   
-  }
-    
   // create the fiunction switch mode 
   function switchMode(){
     const nextMode = modeRef.current === 'work' ? 'break' : 'work';
     setMode(nextMode);
-    setSecondsLeft(nextMode === 'work' ? workMinutes * 60 : breakMinutes * 60);
+    const newTime = nextMode === "work" ? workMinutes * 60 : breakMinutes * 60;
+    setRemainingTime(newTime);
+    setIsPaused(true);
+    setIsPlaying(false);
+    setTimerKey((prev) => prev + 1);
+    
   }
+
+  const reload = () => {
+    const resetTime = mode === 'work' ? workMinutes * 60 : breakMinutes * 60;
+    setRemainingTime(resetTime);
+    
+    setIsPaused(true);
+    setIsPlaying(false);
+    setTimerKey((prev) => prev + 1);
+  };
+
 
   function playSound() {
     const audio = new Audio(soundFile);
     audio.play();
   }
   
-
-  function openModal() {
-    setShowModal(true);
-    setIsPaused(true);
-    setIsPlaying(false);
-  }
 
   const closeModal = () => {
     setShowModal(false);
@@ -129,77 +128,114 @@ function PomorodoTimer() {
     </div>
 
       <div className="timer-wrapper">
-        <CountdownCircleTimer
-          key={`${mode}-${workMinutes}-${breakMinutes}`} 
+        <CountdownCircleTimer 
+          className={`lofi-video-iframe ${mode === 'work' ? 'work-border' : 'break-border'}`}
           isPlaying={!isPaused && isPlaying}
-          duration={secondsLeft} 
-          strokeWidth={40}
-          colors={mode === "work" ?  ["#F44336","#ffa500","#ffff00","#f5f5f5"] :["#32cd32","#7fffd4","#66cdaa","#e0ffff"]}
+          duration={remainingTime} 
+          initialRemainingTime={remainingTime}
+          key={timerKey} 
+          strokeWidth={15}
+          colors={mode === "work" ?  ["#F44336","#ffa500","#ffff00","#f5f5f5"] :["#76c976","#7fffd4","#66cdaa","#e0ffff"]}
           colorsTime={[10, 6, 2, 0]}
           onComplete={() => {
             switchMode();
             setIsPlaying(false);
             playSound();
-            return {shouldRepeat:false,delay:20};
+            
+            return {shouldRepeat:false};
           }}
-          size={400}                      // ^^ go to change
+          size={420}   
+          
+      
         >
           {renderTime}
         </CountdownCircleTimer>
-      </div>
 
+        <div className="buttons-container">
+
+          <div className="reload-button">
       
-
-      <div className="buttons-container">
-
-        <div className="reload-button">
-          <button onClick={reload} className="reload-button">
-            <IoReloadCircle size={75} />
-          </button>
-        </div>
-
-        {/* Play/Pause Buttons */}
-        
-        <div className="play-button">
-          {isPlaying ? (
-            <FaPauseCircle 
-                size={90}
-                onClick = {()=> {
-                  setIsPlaying(false);
-                  setIsPaused(true);
-                }}
+              <IoReload 
+                size={50} 
+                onClick={reload}
+                
+                
               />
-          ):(
-          <IoIosPlayCircle 
-            size={100}
-            onClick={() => {
-              setIsPlaying(true);
-              setIsPaused(false);
-            }}
+            
+          </div>
+
+          {/* Play/Pause Buttons */}
           
-          />)}
+          <div className="play-button">
+            {isPlaying ? (
+              <CiPause1 
+                  size={40}
+                  onClick = {()=> {
+                    setIsPlaying(false);
+                    setIsPaused(true);
+                  }}
+                  
+                  
+                />
+            ):(
+            <CiPlay1
+              size={50}
+              onClick={() => {
+                setIsPlaying(true);
+                setIsPaused(false);
+                
+                
+              }}
+              
+              
+              
+            
+            />)}
+          </div>
+
+          
+          {/* Settings Button */}
+          <SettingsContext.Provider value={{
+            workMinutes,
+            setWorkMinutes,
+            breakMinutes,
+            setBreakMinutes,
+          }}>
+
+          <div className="settings-container">
+            
+              <CiSettings className='settings-button'
+                size={55}
+                onClick={() => {
+                  setShowModal(true);
+                  setIsPaused(true);
+                  setIsPlaying(false); 
+                }}
+                
+                />
+            
+          </div>
+
+          {/* Modal */}
+          {showModal && <Modal closeModal={closeModal} />}
+          </SettingsContext.Provider>
+          
+          
         </div>
-
+      </div>
+      
+      
+      <div className={`lofi-video-iframe ${mode === 'work' ? 'work-border' : 'break-border'}`}>
         
-        {/* Settings Button */}
-        <SettingsContext.Provider value={{
-          workMinutes,
-          setWorkMinutes,
-          breakMinutes,
-          setBreakMinutes,
-        }}>
-
-        <div className="settings-container">
-          <button onClick= {openModal} className="setting-button">
-            <IoSettings size={48} />
-          </button>
-        </div>
-
-        {/* Modal */}
-        {showModal && <Modal closeModal={closeModal} />}
-        </SettingsContext.Provider>
-        
-        
+      <iframe
+       
+       
+       src={`${videoURL}?autoplay=${isPlaying ? 1 : 0}`}
+      title="peaceful piano radio 🎹 music to focus/study to" 
+      frameborder="0" 
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+      referrerpolicy="strict-origin-when-cross-origin" 
+      allowfullscreen></iframe>
       </div>
 
     </div>

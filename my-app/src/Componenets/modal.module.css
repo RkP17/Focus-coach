@@ -8,6 +8,7 @@
     place-items: center;
     background-color: rgba(0, 0, 0, 0.7); /* Darker overlay */
     z-index: 5000;
+    
   }
   
   .modalContainer {
@@ -17,6 +18,7 @@
     padding: 2rem;
     width: 400px;
     max-width: 90%; /* Ensure modal is responsive */
+    filter:drop-shadow(0.0px 0px 7px rgb(72, 81, 125));
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   }
   
