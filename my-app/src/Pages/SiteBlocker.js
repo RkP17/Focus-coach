@@ -1,24 +1,50 @@
-import React,{useState,useEffect} from 'react'
+/* global chrome */
+
+import React,{useState,useEffect,useRef} from 'react'
 import "./siteBlocker.css";
 
 function SiteBlocker() {
-  // store the sites
+  // store the sites needs ot be a list since it has more than one site
   const[blockedSites,setBlockedSites]=useState('');
   const[allowesSites,setAllowedSites]=useState('');
+
+  const blockedSitesRef = useRef();
 
   useEffect (() => {
     //get the items 
     const savedBlockedList=localStorage.getItem('blockedSites');
     const savedAllowedList=localStorage.getItem('allowedSites');
+
     if(savedBlockedList) setBlockedSites(savedBlockedList);
     if(savedAllowedList) setAllowedSites(savedAllowedList);
-  })
+  },[]);
+
 
   // handle the changes of the site
   const BlockedSiteChange = (e) => {
-    const value=e.target.value;
+    const value = e.target.value;
+
+    // Convert the input into an array of sites (split by newline, filter empty values)
+    const blockedSitesArray = value.split('\n').map(site => site.trim()).filter(site => site !== '');
+
+    // Update state and save to localStorage as JSON
     setBlockedSites(value);
-    localStorage.setItem('blockedSites',value)
+    if (typeof chrome !== 'undefined' && chrome.storage) {
+      chrome.storage.local.set({ blockedSites: blockedSitesArray }, () => {
+        console.log('Blocked Sites saved to chrome.storage:', blockedSitesArray);
+      });
+    } else {
+      console.log('chrome.storage is not available. Data will not be saved.');
+      // Optionally, you could fall back to localStorage if needed (but it's not recommended)
+      localStorage.setItem('blockedSites', JSON.stringify(blockedSitesArray));
+    }
+    /*
+    localStorage.setItem('blockedSites', JSON.stringify(blockedSitesArray));
+    const storedBlockedSites = JSON.parse(localStorage.getItem('blockedSites'));
+    // Log the correctly parsed array
+    console.log('Blocked Sites saved2 :', storedBlockedSites);  
+    */
+
   }
 
   const AllowedSiteChange = (e) => {

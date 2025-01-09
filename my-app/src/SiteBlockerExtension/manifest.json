@@ -2,9 +2,15 @@
     "manifest_version": 2,
     "name":"Blocker with timer",
     "version":"0.0.1",
+    "permissions": [
+        "storage",
+        "webRequest",
+        "webRequestBlocking",
+        "<all_urls>"
+    ],
     "background": {
-        
-        "type": "module"
+        "scripts": ["background.js"],
+        "persistent": true
      },
     "content_scripts":[
         {
