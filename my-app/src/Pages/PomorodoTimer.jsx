@@ -107,6 +107,8 @@ function PomorodoTimer() {
     "“You are never too old to set another goal or to dream a new dream.”",
     "“A goal properly set is halfway reached.”",
     "“A goal should scare you a little and excite you a lot.”",
+    "“Make each day your masterpiece.”",
+    "“​​We will fail when we fail to try.”"
 
   ];
 
@@ -125,7 +127,7 @@ function PomorodoTimer() {
         {headerText}
       </h3>
      
-    </div>
+      </div>
 
       <div className="timer-wrapper">
         <CountdownCircleTimer 
