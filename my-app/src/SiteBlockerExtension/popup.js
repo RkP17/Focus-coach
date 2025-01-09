@@ -24,15 +24,15 @@ document.getElementById("saveButton").addEventListener("click", () => {
 chrome.storage.local.get(['blockedSites', 'allowedSites'], (data) => {
   // Ensure blockedSitesInput is updated with the saved sites
   if (data.blockedSites) {
-    document.getElementById('blockedSitesInput').value = data.blockedSites.join('\n');
+    document.getElementById('BlockSitesInput').value = data.blockedSites.join('\n');
   } else {
-    document.getElementById('blockedSitesInput').value = '';  // Set to empty if no data exists
+    document.getElementById('BlockSitesInput').value = '';  // Set to empty if no data exists
   }
   
   if (data.allowedSites) {
-    document.getElementById('allowedSitesInput').value = data.allowedSites.join('\n');
+    document.getElementById('AllowSitesInput').value = data.allowedSites.join('\n');
   } else {
-    document.getElementById('allowedSitesInput').value = '';  // Set to empty if no data exists
+    document.getElementById('AllowSitesInput').value = '';  // Set to empty if no data exists
   }
 });
 
@@ -48,10 +48,10 @@ document.getElementById("blockToggle").addEventListener("change", (event) => {
 window.addEventListener("load", () => {
   chrome.storage.local.get(['blockedSites', 'allowedSites'], (data) => {
     if (data.blockedSites) {
-      document.getElementById("blockedSitesInput").value = data.blockedSites.join('\n');
+      document.getElementById("BlockSitesInput").value = data.blockedSites.join('\n');
     }
     if (data.allowedSites) {
-      document.getElementById("allowedSitesInput").value = data.allowedSites.join('\n');
+      document.getElementById("AllowSitesInput").value = data.allowedSites.join('\n');
     }
   });
 });

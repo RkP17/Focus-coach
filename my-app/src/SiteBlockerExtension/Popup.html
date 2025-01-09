@@ -8,12 +8,15 @@
         height: 400px;
         font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
         padding: 10px;
+        background: linear-gradient(90deg, #454084,#2d2869,#454084);;
+        color: rgb(255, 255, 255);
       }
       #timerLink {
         width: 100%;
         padding: 10px;
-        background-color: #4CAF50;
+        background-color: #2f337e;
         color: white;
+        filter:drop-shadow(0.5px 0px 5px rgb(92, 114, 225));
         border: none;
         cursor: pointer;
       }
@@ -49,7 +52,8 @@
     <p>Manage your Pomodoro timer and blocked sites:</p>
     <!-- Button to open the Timer Page -->
     <button id="timerLink">Go to Timer Page</button>
-
+    
+    
     <label>Blocked Sites (One per line):</label>
     <textarea id="BlockSitesInput" placeholder="Enter blocked sites here one per line"></textarea>
 
@@ -57,7 +61,7 @@
     <textarea id="AllowSitesInput" placeholder="Enter Allowed sites here one per line"></textarea>
 
     <button id="saveButton">Save Settings</button>
-
+  
     <script src="popup.js"></script>
   </body>
 </html>

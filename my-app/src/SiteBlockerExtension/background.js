@@ -1,5 +1,4 @@
 // Background script that checks for blocked sites on every page load
-import {BlockedSites} from 'src/Pages/SiteBlocker.js';
 
 // Function to block websites
 const blockWebsites = () => {
