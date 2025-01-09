@@ -1,24 +1,37 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import NavBar from "./Componenets/NavBar"
+import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import Dashboard from './Pages/Dashboard';
+import Calendar from './Pages/Calendar';
+import ToDoList from './Pages/ToDoList';
+import SiteBlocker from './Pages/SiteBlocker';
+import PomorodoTimer from './Pages/PomorodoTimer';
+//import SettingsContex from './Componenets/settingsContext'
 
 function App() {
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    
+  
+    <>
+      <Router>
+          <NavBar />
+        <Routes>
+          <Route path= "/"  exact element={<Dashboard />}/>
+          <Route path= "/todolist" element={<ToDoList/>}/>
+          <Route path= "/calendar" element={<Calendar/>}/>
+          <Route path= "/siteblocker" element={<SiteBlocker/>}/>
+          <Route path= "/timer" element={<PomorodoTimer/>}/>
+        </Routes>
+      </Router>
+      
+
+     </>
+
+     
+      
+     
   );
 }
 
