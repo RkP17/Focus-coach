@@ -1,3 +1,5 @@
+/* global chrome */
+
 import React, {useState} from 'react'
 import './pomodoroTimer.css';
 import { useEffect, useRef } from "react"
@@ -7,9 +9,10 @@ import { CiSettings } from "react-icons/ci";
 import { CiPause1 } from "react-icons/ci";
 import { IoReload } from "react-icons/io5";
 import {Modal} from "../Componenets/Modal.jsx";
-import SettingsContext from '../Componenets/settingsContext'
+import SettingsContext from '../Componenets/settingsContext.js'
 import soundFile from '../Componenets/mixkit-relaxing-bell-chime-3109.wav';
-
+//import {blockedSites} from '../SiteBlockerExtension/popup.js';
+//import { fetchBlockedAndAllowedSites } from '../helpers/stroageHelper.js'
 
 
 
@@ -31,6 +34,7 @@ const renderTime = ({ remainingTime }) => {
 
 
 function PomorodoTimer() {  
+  
 
   // Modal
    
@@ -44,12 +48,16 @@ function PomorodoTimer() {
   const[mode,setMode]=useState('work'); // work / break
 
   const [headerText,setHeaderText]=useState("");
-  const[secondsLeft,setSecondsLeft]=useState(0);
+  //const[secondsLeft,setSecondsLeft]=useState(0);
 
   const [remainingTime, setRemainingTime] = useState(workMinutes * 60);
   const [timerKey, setTimerKey] = useState(0);
 
   const modeRef=useRef(mode);
+
+  const [blockedSites, setBlockedSites] = useState([]);
+
+
   
   const videoURL = "https://www.youtube.com/embed/TtkFsfOP9QI";
 
@@ -61,7 +69,7 @@ function PomorodoTimer() {
     setRemainingTime(workMinutes * 60);
   }, [workMinutes]);
 
-
+  
 
   
   // create the fiunction switch mode 

@@ -1,3 +1,5 @@
+/* global chrome*/
+
 document.getElementById("timerLink").addEventListener("click", () => {
   chrome.tabs.create({ url: "http://localhost:3001/timer" });
 });
@@ -19,7 +21,11 @@ document.getElementById("saveButton").addEventListener("click", () => {
   }, () => {
     console.log("Settings saved!");
   });
+
+  
 });
+
+
 
 chrome.storage.local.get(['blockedSites', 'allowedSites'], (data) => {
   // Ensure blockedSitesInput is updated with the saved sites
@@ -36,15 +42,7 @@ chrome.storage.local.get(['blockedSites', 'allowedSites'], (data) => {
   }
 });
 
-// Event listener for block toggle (for starting/stopping the timer)
-document.getElementById("blockToggle").addEventListener("change", (event) => {
-  const isChecked = event.target.checked;
-  chrome.runtime.sendMessage({
-    action: isChecked ? "startTimer" : "stopTimer",
-  });
-});
 
-// Fetch saved block/allow lists from chrome storage when popup loads
 window.addEventListener("load", () => {
   chrome.storage.local.get(['blockedSites', 'allowedSites'], (data) => {
     if (data.blockedSites) {
