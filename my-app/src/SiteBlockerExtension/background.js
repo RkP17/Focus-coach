@@ -73,41 +73,45 @@ const generateHTML = (pageName) => {
    `;
 };
 
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  if (message.type === 'SET_BLOCKED_SITES') {
-    const blockedSites = message.blockedSites;
-    // Store the blocked sites in chrome.storage
-    chrome.storage.local.set({ blockedSites }, () => {
-      sendResponse({ status: 'success', blockedSites });
-    });
-  }
-  
-  // Return true to indicate that you will send a response asynchronously
-  return true;
-});
-
-
 // Function to block websites
 const blockWebsites = () => {
-    chrome.storage.local.get('blockedSites', (data) => {
-      const blockedSites = data.blockedSites || []; // Default to empty array if not found
-      const hostname = window.location.hostname;
-  
-      const isBlocked = blockedSites.some(site => hostname.includes(site));
-      if (isBlocked) {
-        document.head.innerHTML = generateSTYLES();
-        document.body.innerHTML = generateHTML(hostname);
-        /*
-        `
-          <div style="text-align: center; margin-top: 20%;background=#fffff;">
-            <h1>Site Blocked</h1>
-            <p>You are not allowed to access ${hostname}.</p>
-            <p> Remember we can do anything we want to if we stick to it long enough</p>
-          </div>`;
-          */
+  chrome.storage.local.get('blockedSites', (data) => {
+    const blockedSites = data.blockedSites || []; // Default to empty array if not found
+    const hostname = window.location.hostname;
+
+    const isBlocked = blockedSites.some(site => hostname.includes(site));
+    if (isBlocked) {
+      document.head.innerHTML = generateSTYLES();
+      document.body.innerHTML = generateHTML(hostname);
+      /*
+      `
+        <div style="text-align: center; margin-top: 20%;background=#fffff;">
+          <h1>Site Blocked</h1>
+          <p>You are not allowed to access ${hostname}.</p>
+          <p> Remember we can do anything we want to if we stick to it long enough</p>
+        </div>`;
+        */
+    }
+  });
+};
+
+/*
+const pollTimerState = () => {
+  setInterval(() => {
+    console.log(chrome)
+    //chrome.storage.local.get('timerIsPlaying', (data) => {
+      const isPlaying = data.timerIsPlaying || false; // Default to false if not found
+      console.log("retrieved timer state:", isPlaying);
+    
+      if (isPlaying === true) {
+        blockWebsites(); // Block websites if timer is playing
+      }else{
+        blockWebsites();
       }
     });
-  };
+  },1000);  // Check every second
+};
+*/
 
   const AllowWebsites = () => {
     chrome.storage.local.get('allowedSites', (data) => {
@@ -122,5 +126,6 @@ const blockWebsites = () => {
   
   
   blockWebsites();
-  AllowWebsites();
+  //AllowWebsites();
+  //pollTimerState();
   

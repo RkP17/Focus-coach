@@ -1,7 +1,8 @@
 /* global chrome*/
 
 document.getElementById("timerLink").addEventListener("click", () => {
-  chrome.tabs.create({ url: "http://localhost:3001/timer" });
+  // Open the timer page as part of the extension
+  chrome.tabs.create({ url: chrome.runtime.getURL("build/index.html") });
 });
 
 // Event listener to handle save button click and save settings
@@ -21,10 +22,7 @@ document.getElementById("saveButton").addEventListener("click", () => {
   }, () => {
     console.log("Settings saved!");
   });
-
-  
 });
-
 
 
 chrome.storage.local.get(['blockedSites', 'allowedSites'], (data) => {
