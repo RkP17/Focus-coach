@@ -4,15 +4,13 @@
     "version":"0.0.1",
     "permissions": [
         "storage",
-        "webRequest",
-        "webRequestBlocking",
         "<all_urls>",
         "tabs",
         "activeTab"
     ],
     "background": {
         "scripts": ["background.js"],
-        "persistent": true
+        "persistent": false
      },
     "options_page": "build/index.html",
     "content_scripts":[

@@ -5,7 +5,6 @@ import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Dashboard from './Pages/Dashboard';
 import Calendar from './Pages/Calendar';
 import ToDoList from './Pages/ToDoList';
-import SiteBlocker from './Pages/SiteBlocker';
 import PomorodoTimer from './Pages/PomorodoTimer';
 //import SettingsContex from './Componenets/settingsContext'
 
@@ -21,7 +20,6 @@ function App() {
           <Route path= "/"  exact element={<Dashboard />}/>
           <Route path= "/todolist" element={<ToDoList/>}/>
           <Route path= "/calendar" element={<Calendar/>}/>
-          <Route path= "/siteblocker" element={<SiteBlocker/>}/>
           <Route path= "/timer" element={<PomorodoTimer/>}/>
         </Routes>
       </Router>

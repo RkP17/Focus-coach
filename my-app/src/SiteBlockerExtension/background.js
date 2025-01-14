@@ -1,13 +1,10 @@
 // Background script that checks for blocked sites on every page load
 const generateSTYLES = () => {
   return `<style>
-  @import url(https://fonts.googleapis.com/css?family=opensans:500);
-  @import url('https://fonts.googleapis.com/css2?family=Anton&family=Ubuntu:wght@400;700&display=swap');
-  @import url('https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap');
-  @import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Anton&family=M+PLUS+Rounded+1c&family=Major+Mono+Display&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Playwrite+VN:wght@100..400&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap');
 
   body {
-    background: linear-gradient(90deg, #454084,#2d2869,#454084);;
+    background: linear-gradient(90deg,rgb(40, 36, 98),#2d2869,#454084);;
     color: #fff;
     font-family: 'Amatic SC';
     max-height: 700px;
@@ -73,45 +70,46 @@ const generateHTML = (pageName) => {
    `;
 };
 
-// Function to block websites
-const blockWebsites = () => {
+
+
+const blockWebsites = (hostname,tabId) => {
   chrome.storage.local.get('blockedSites', (data) => {
     const blockedSites = data.blockedSites || []; // Default to empty array if not found
-    const hostname = window.location.hostname;
 
     const isBlocked = blockedSites.some(site => hostname.includes(site));
+    console.log("Blocked state:", isBlocked);
+
     if (isBlocked) {
-      document.head.innerHTML = generateSTYLES();
-      document.body.innerHTML = generateHTML(hostname);
-      /*
-      `
-        <div style="text-align: center; margin-top: 20%;background=#fffff;">
-          <h1>Site Blocked</h1>
-          <p>You are not allowed to access ${hostname}.</p>
-          <p> Remember we can do anything we want to if we stick to it long enough</p>
-        </div>`;
-        */
+      const blockedPageUrl = chrome.runtime.getURL('blocked.html');
+      chrome.tabs.update(tabId, { url: blockedPageUrl }); // Redirect to the blocked page
+      
     }
   });
 };
 
-/*
+// Poll Timer State and Active Tab
 const pollTimerState = () => {
   setInterval(() => {
-    console.log(chrome)
-    //chrome.storage.local.get('timerIsPlaying', (data) => {
-      const isPlaying = data.timerIsPlaying || false; // Default to false if not found
-      console.log("retrieved timer state:", isPlaying);
-    
-      if (isPlaying === true) {
-        blockWebsites(); // Block websites if timer is playing
-      }else{
-        blockWebsites();
-      }
-    });
-  },1000);  // Check every second
+    const timerIsPlaying = JSON.parse(localStorage.getItem('timerIsPlaying')) || false;
+    console.log('Timer is playing:', timerIsPlaying);
+
+    if (timerIsPlaying) {
+      // Get active tab's URL
+      chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+        if (tabs.length > 0) {
+          const activeTab = tabs[0];
+          const url = new URL(activeTab.url);
+          console.log('Active tab URL:', url.hostname);
+
+          // Block the site if it's in the blocked list
+          blockWebsites(url.hostname,activeTab.id);
+        }
+      });
+    }
+  }, 1000); // Check every second
 };
-*/
+
+
 
   const AllowWebsites = () => {
     chrome.storage.local.get('allowedSites', (data) => {
@@ -123,9 +121,12 @@ const pollTimerState = () => {
       }
     });
   };
+
+
   
   
-  blockWebsites();
+  //blockWebsites();
   //AllowWebsites();
-  //pollTimerState();
+  pollTimerState();
+  
   

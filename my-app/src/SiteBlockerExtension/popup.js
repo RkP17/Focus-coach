@@ -38,7 +38,12 @@ chrome.storage.local.get(['blockedSites', 'allowedSites'], (data) => {
   } else {
     document.getElementById('AllowSitesInput').value = '';  // Set to empty if no data exists
   }
+
+ 
 });
+
+
+
 
 
 window.addEventListener("load", () => {
@@ -51,3 +56,4 @@ window.addEventListener("load", () => {
     }
   });
 });
+

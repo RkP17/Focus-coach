@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/static/css/main.cc52e0ea.css",
-    "main.js": "/static/js/main.87dd2680.js",
+    "main.js": "/static/js/main.2aba8f28.js",
     "static/media/mixkit-relaxing-bell-chime-3109.wav": "/static/media/mixkit-relaxing-bell-chime-3109.680dbc22936be4547385.wav",
     "index.html": "/index.html",
     "main.cc52e0ea.css.map": "/static/css/main.cc52e0ea.css.map",
-    "main.87dd2680.js.map": "/static/js/main.87dd2680.js.map"
+    "main.2aba8f28.js.map": "/static/js/main.2aba8f28.js.map"
   },
   "entrypoints": [
     "static/css/main.cc52e0ea.css",
-    "static/js/main.87dd2680.js"
+    "static/js/main.2aba8f28.js"
   ]
 }

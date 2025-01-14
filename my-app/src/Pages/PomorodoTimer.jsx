@@ -1,3 +1,5 @@
+/* global chrome */
+
 import React, {useState} from 'react'
 import './pomodoroTimer.css';
 import { useEffect, useRef } from "react"
@@ -61,10 +63,23 @@ function PomorodoTimer() {
     setRemainingTime(workMinutes * 60);
     setTimerKey((prev) => prev + 1);
   }, [workMinutes]);
+/*
+    // In your React app, use chrome.storage to set the timer state
+  useEffect(() => {
+    // Save the timer state in chrome storage when it changes
+    chrome.storage.local.set({ timerIsPlaying: isPlaying });
+  }, [isPlaying]);
+*/
+
+  useEffect(() => {
+    // Update localStorage whenever the timer state changes
+    localStorage.setItem('timerIsPlaying', JSON.stringify(isPlaying));
+    console.log("Saved:",isPlaying);
+  }, [isPlaying]);
+
+    
 
 
-
-  
   // create the fiunction switch mode 
   function switchMode(){
     const nextMode = modeRef.current === 'work' ? 'break' : 'work';
@@ -109,7 +124,11 @@ function PomorodoTimer() {
     "“A goal properly set is halfway reached.”",
     "“A goal should scare you a little and excite you a lot.”",
     "“Make each day your masterpiece.”",
-    "“​​We will fail when we fail to try.”"
+    "“​​We will fail when we fail to try.”",
+    "“The only way to do great work is to love what you do.”",
+    "'It always seems impossible until it's done.'",
+    "“You can fool everyone else, but you can’t fool your own mind.”",
+    "“Don’t let yesterday take up too much of today.”",
 
   ];
 
