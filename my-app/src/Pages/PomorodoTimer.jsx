@@ -12,7 +12,8 @@ import {Modal} from "../Componenets/Modal.jsx";
 import SettingsContext from '../Componenets/settingsContext'
 import soundFile from '../Componenets/mixkit-relaxing-bell-chime-3109.wav';
 import { VscTasklist } from "react-icons/vsc";
-
+import {Link} from "react-router-dom"
+import * as AiIcons from "react-icons/ai";
 
 
 
@@ -51,6 +52,10 @@ function PomorodoTimer() {
 
   const [remainingTime, setRemainingTime] = useState(workMinutes * 60);
   const [timerKey, setTimerKey] = useState(0);
+
+  // To do list --->
+  const [sidebar,setSidebar]=useState(false);
+  const showSidebar = () => setSidebar(!sidebar) ;
 
   const modeRef=useRef(mode);
   
@@ -142,7 +147,6 @@ function PomorodoTimer() {
   },[]);
 
   return (
-
     <div className=" timer">
       <div className = "app-name"> 
         <h1>
@@ -150,10 +154,18 @@ function PomorodoTimer() {
         </h1>
       </div>
 
-      <div className='task'>
-      <VscTasklist
-        size={55} 
-      />
+      <div className='navbars'>
+        <Link className='menu-bars'>
+        <VscTasklist className="task-icon" size={55} onClick={showSidebar}/>
+        </Link>
+        
+      </div>
+      <div className={sidebar ? 'nav-menu-active' : 'nav-menu'}>
+        <li className='navbar-toggle'>
+              < div className='menu-bars'>
+              <AiIcons.AiOutlineClose onClick={showSidebar} />
+              </div>
+          </li>
       </div>
 
       <div class="quoteBox">
