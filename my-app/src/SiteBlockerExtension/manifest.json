@@ -2,10 +2,17 @@
     "manifest_version": 2,
     "name":"Blocker with timer",
     "version":"0.0.1",
+    "permissions": [
+        "storage",
+        "<all_urls>",
+        "tabs",
+        "activeTab"
+    ],
     "background": {
-        
-        "type": "module"
+        "scripts": ["background.js"],
+        "persistent": false
      },
+    "options_page": "build/index.html",
     "content_scripts":[
         {
             "matches":["<all_urls>"],

@@ -32,11 +32,6 @@ export const SidebarData = [
     icon: <FaClock />,
     cName: 'nav-text'
   },
-  {
-    title: 'SiteBlocker',
-    path: '/siteblocker',
-    icon: <TfiCalendar />,
-    cName: 'nav-text'
-  },
+ 
  
 ];
