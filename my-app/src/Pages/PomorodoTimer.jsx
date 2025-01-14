@@ -11,6 +11,7 @@ import { IoReload } from "react-icons/io5";
 import {Modal} from "../Componenets/Modal.jsx";
 import SettingsContext from '../Componenets/settingsContext'
 import soundFile from '../Componenets/mixkit-relaxing-bell-chime-3109.wav';
+import { VscTasklist } from "react-icons/vsc";
 
 
 
@@ -141,7 +142,20 @@ function PomorodoTimer() {
   },[]);
 
   return (
+
     <div className=" timer">
+      <div className = "app-name"> 
+        <h1>
+          Focus Coach
+        </h1>
+      </div>
+
+      <div className='task'>
+      <VscTasklist
+        size={55} 
+      />
+      </div>
+
       <div class="quoteBox">
       <h3>
         {headerText}
