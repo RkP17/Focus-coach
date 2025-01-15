@@ -14,6 +14,8 @@ import soundFile from '../Componenets/mixkit-relaxing-bell-chime-3109.wav';
 import { VscTasklist } from "react-icons/vsc";
 import {Link} from "react-router-dom"
 import * as AiIcons from "react-icons/ai";
+import ToDoModal from "../Componenets/ToDoModal.js";
+
 
 
 
@@ -52,10 +54,6 @@ function PomorodoTimer() {
 
   const [remainingTime, setRemainingTime] = useState(workMinutes * 60);
   const [timerKey, setTimerKey] = useState(0);
-
-  // To do list --->
-  const [sidebar,setSidebar]=useState(false);
-  const showSidebar = () => setSidebar(!sidebar) ;
 
   const modeRef=useRef(mode);
   
@@ -119,6 +117,11 @@ function PomorodoTimer() {
     setIsPaused(false);
   }
 
+  // To do list --->
+  const[sidebar,setSidebar]=useState(false);
+
+  
+
   const phrases = [
     "“The question isn’t who is going to let me; it’s who is going to stop me.” ",
     "“Never allow a person to tell you no, who doesn’t have the power to say yes.”",
@@ -155,20 +158,16 @@ function PomorodoTimer() {
       </div>
 
       <div className='navbars'>
-        <Link className='menu-bars'>
-        <VscTasklist className="task-icon" size={55} onClick={showSidebar}/>
-        </Link>
+        <VscTasklist className="task-icon" 
+          size={55} 
+          onClick={() => {
+            setSidebar(true);
+          }}/>
         
       </div>
-      <div className={sidebar ? 'nav-menu-active' : 'nav-menu'}>
-        <li className='navbar-toggle'>
-              < div className='menu-bars'>
-              <AiIcons.AiOutlineClose onClick={showSidebar} />
-              </div>
-          </li>
-      </div>
+      {sidebar && <ToDoModal sidebar={sidebar} setSidebar={setSidebar} />}
 
-      <div class="quoteBox">
+    <div class="quoteBox">
       <h3>
         {headerText}
       </h3>

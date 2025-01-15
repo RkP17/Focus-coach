@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Ubuntu:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pattaya&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Anton&family=M+PLUS+Rounded+1c&family=Major+Mono+Display&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Playwrite+VN:wght@100..400&display=swap');
+
+.sidebar{
+    background-color:  #272364;
+    width: 300px;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    right: -100%;
+    transition: 850ms;
+    filter:drop-shadow(0.5px 0px 5px rgb(61, 70, 113));
+    
+}
+
+.sidebar.active{
+    right:0;
+    transition: 900ms;
+}
+
+.sidebar-header{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    align-items: center;
+    list-style: none;
+    height: 60px;
+    font-family: 'Amatic SC';
+    padding: 8px 16px;
+    
+    
+}
+
+.sidebar-title{
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+    font-size: 50px;
+    margin-right: 20px;
+    padding: 0px 30px;
+    filter:drop-shadow(0.5px 0px 5px rgb(92, 114, 225));
+}
+
+.sidebar-closeBtn{
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1.5rem;
+    padding: 0;
+    filter:drop-shadow(0.5px 0px 5px rgb(92, 114, 225));
+   
+}
+
+.sidebar-closeBtn:hover {
+    color: #ff4d4d; /* Optional hover effect */
+  }
