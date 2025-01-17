@@ -43,6 +43,21 @@ h1{
 .task-icon:hover{
   color:#ffffff;
 }
+
+.settings-button {
+ 
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  cursor: pointer;
+  gap: 10px;
+  color: #b8b8e2;
+  filter:drop-shadow(0.5px 0px 5px rgb(92, 114, 225));
+  path {
+    stroke-width: 0.5px ;
+  }
+  
+}
 .menu-bars {
   margin-right: 14rem;
   
@@ -237,21 +252,7 @@ h3 {
     color: #ffffff;
   }
  
-  .settings-button {
-
-    display: flex; 
-    justify-content: center;
-    align-items: center;
-    width: auto;
-    cursor: pointer;
-    gap: 10px;
-    color: #b8b8e2;
-    filter:drop-shadow(0.5px 0px 5px rgb(92, 114, 225));
-    path {
-      stroke-width: 0.5px ;
-    }
-    
-  }
+  
 
   
   /* Base styles for the iframe */

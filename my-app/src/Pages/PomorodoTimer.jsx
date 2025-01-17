@@ -163,9 +163,35 @@ function PomorodoTimer() {
           onClick={() => {
             setSidebar(true);
           }}/>
-        
       </div>
       {sidebar && <ToDoModal sidebar={sidebar} setSidebar={setSidebar} />}
+
+      {/* Settings Button */}
+      <SettingsContext.Provider value={{
+            workMinutes,
+            setWorkMinutes,
+            breakMinutes,
+            setBreakMinutes,
+          }}
+      >
+
+      <div className="settings-container">
+            
+        <CiSettings className='settings-button'
+          size={55}
+          onClick={() => {
+            setShowModal(true);
+            setIsPaused(true);
+            setIsPlaying(false); 
+          }}
+                
+        />
+            
+      </div>
+      {/* Modal */}
+      {showModal && <Modal closeModal={closeModal} />}
+      </SettingsContext.Provider>
+          
 
     <div class="quoteBox">
       <h3>
@@ -230,42 +256,13 @@ function PomorodoTimer() {
               onClick={() => {
                 setIsPlaying(true);
                 setIsPaused(false);
-                
-                
               }}
+              />
               
-              
-              
-            
-            />)}
+              )}
           </div>
 
           
-          {/* Settings Button */}
-          <SettingsContext.Provider value={{
-            workMinutes,
-            setWorkMinutes,
-            breakMinutes,
-            setBreakMinutes,
-          }}>
-
-          <div className="settings-container">
-            
-              <CiSettings className='settings-button'
-                size={55}
-                onClick={() => {
-                  setShowModal(true);
-                  setIsPaused(true);
-                  setIsPlaying(false); 
-                }}
-                
-                />
-            
-          </div>
-
-          {/* Modal */}
-          {showModal && <Modal closeModal={closeModal} />}
-          </SettingsContext.Provider>
           
           
         </div>
