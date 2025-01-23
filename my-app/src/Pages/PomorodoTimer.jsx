@@ -15,8 +15,8 @@ import { VscTasklist } from "react-icons/vsc";
 import {Link} from "react-router-dom"
 import * as AiIcons from "react-icons/ai";
 import ToDoModal from "../Componenets/ToDoModal.js";
-
-
+import { FaCalendarAlt } from "react-icons/fa";
+import {Calendar} from "../Componenets/Calendar.jsx"
 
 
 const renderTime = ({ remainingTime }) => {
@@ -51,6 +51,8 @@ function PomorodoTimer() {
 
   const [headerText,setHeaderText]=useState("");
   const[secondsLeft,setSecondsLeft]=useState(0);
+
+  const[showCalendar,setShowCalendar]=useState(false);
 
   const [remainingTime, setRemainingTime] = useState(workMinutes * 60);
   const [timerKey, setTimerKey] = useState(0);
@@ -117,6 +119,11 @@ function PomorodoTimer() {
     setIsPaused(false);
   }
 
+  //close calendar 
+  const close =() => {
+    setShowCalendar(false);
+
+  }
   // To do list --->
   const[sidebar,setSidebar]=useState(false);
 
@@ -138,6 +145,9 @@ function PomorodoTimer() {
     "'It always seems impossible until it's done.'",
     "“You can fool everyone else, but you can’t fool your own mind.”",
     "“Don’t let yesterday take up too much of today.”",
+    "“We will either find a way or make one.” ",
+    "“The man who moves a mountain begins by carrying away small stones.“",
+    "“Success is the progressive realization of a worthy goal or ideal.”",
 
   ];
 
@@ -157,41 +167,24 @@ function PomorodoTimer() {
         </h1>
       </div>
 
+
       <div className='navbars'>
+        <FaCalendarAlt className='calendar-icon'
+          size={42}
+          onClick={() => {
+            setShowCalendar(true);
+          }}
+        />
         <VscTasklist className="task-icon" 
           size={55} 
           onClick={() => {
             setSidebar(true);
           }}/>
-      </div>
-      {sidebar && <ToDoModal sidebar={sidebar} setSidebar={setSidebar} />}
-
-      {/* Settings Button */}
-      <SettingsContext.Provider value={{
-            workMinutes,
-            setWorkMinutes,
-            breakMinutes,
-            setBreakMinutes,
-          }}
-      >
-
-      <div className="settings-container">
-            
-        <CiSettings className='settings-button'
-          size={55}
-          onClick={() => {
-            setShowModal(true);
-            setIsPaused(true);
-            setIsPlaying(false); 
-          }}
-                
-        />
-            
-      </div>
-      {/* Modal */}
-      {showModal && <Modal closeModal={closeModal} />}
-      </SettingsContext.Provider>
           
+        
+      </div>
+      {showCalendar && <Calendar close = {close} />}
+      {sidebar && <ToDoModal sidebar={sidebar} setSidebar={setSidebar} />}
 
     <div class="quoteBox">
       <h3>
@@ -256,13 +249,42 @@ function PomorodoTimer() {
               onClick={() => {
                 setIsPlaying(true);
                 setIsPaused(false);
+                
+                
               }}
-              />
               
-              )}
+              
+              
+            
+            />)}
           </div>
 
           
+          {/* Settings Button */}
+          <SettingsContext.Provider value={{
+            workMinutes,
+            setWorkMinutes,
+            breakMinutes,
+            setBreakMinutes,
+          }}>
+
+          <div className="settings-container">
+            
+              <CiSettings className='settings-button'
+                size={55}
+                onClick={() => {
+                  setShowModal(true);
+                  setIsPaused(true);
+                  setIsPlaying(false); 
+                }}
+                
+                />
+            
+          </div>
+
+          {/* Modal */}
+          {showModal && <Modal closeModal={closeModal} />}
+          </SettingsContext.Provider>
           
           
         </div>
@@ -272,14 +294,13 @@ function PomorodoTimer() {
       <div className={`lofi-video-iframe ${mode === 'work' ? 'work-border' : 'break-border'}`}>
         
       <iframe
-       
-       
-       src={`${videoURL}?autoplay=${isPlaying ? 1 : 0}`}
-      title="peaceful piano radio 🎹 music to focus/study to" 
-      frameborder="0" 
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-      referrerpolicy="strict-origin-when-cross-origin" 
-      allowfullscreen></iframe>
+        src={`${videoURL}?autoplay=${isPlaying ? 1 : 0}`}
+        title="peaceful piano radio 🎹 music to focus/study to" 
+        frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+        referrerpolicy="strict-origin-when-cross-origin" 
+        allowfullscreen
+      ></iframe>
       </div>
 
     </div>

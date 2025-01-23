@@ -1,0 +1,60 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Anton&family=M+PLUS+Rounded+1c&family=Major+Mono+Display&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Playwrite+VN:wght@100..400&display=swap');
+.modalBack {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    place-items: center;
+    background-color: rgba(0, 0, 0, 0.7); /* Darker overlay */
+    z-index: 5000;
+    
+  }
+  
+  .modalContainer {
+    background-color: #1a1f63; /* Modal background color */
+    color: #fff; /* Text color */
+    border-radius: 10px;
+    padding: 2rem;
+    width: 1300px;
+    height:700px;
+    max-width: 90%; /* Ensure modal is responsive */
+    filter:drop-shadow(0.0px 0px 7px rgb(72, 81, 125));
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  }
+
+  #calendar {
+    width: 100%;
+    height: 700px;
+    max-height: 90vh;
+  }
+  
+  .modalHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    margin-bottom: 1rem;
+    font-size: 20px;
+  }
+  
+  .modalBody {
+    font-family: 'Amatic SC';
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+  
+  .modalCloseBtn {
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1.5rem;
+    padding: 0;
+  }
+  
+  .modalCloseBtn:hover {
+    color: #ff4d4d; /* Optional hover effect */
+  }
+
+  

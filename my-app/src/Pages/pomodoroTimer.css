@@ -20,12 +20,13 @@ h1{
 }
 
 .navbars{
-  gap: 10px;
+  display: flex;
+  gap: 20px;
   cursor: pointer;
   color: #ffffff;
   filter:drop-shadow(0.5px 0px 5px rgb(92, 114, 225));
   size: 100px;
-  margin-right: -800px;
+  margin-right: -700px;
   margin-top: -45px;
   margin-bottom: -10px;
   
@@ -44,19 +45,14 @@ h1{
   color:#ffffff;
 }
 
-.settings-button {
- 
-  justify-content: center;
-  align-items: center;
-  width: auto;
-  cursor: pointer;
-  gap: 10px;
-  color: #b8b8e2;
-  filter:drop-shadow(0.5px 0px 5px rgb(92, 114, 225));
-  path {
-    stroke-width: 0.5px ;
-  }
-  
+.calendar-icon{
+  color: #d1d1e3;
+  filter:drop-shadow(0.5px 0px 3px rgb(92, 114, 225));
+  margin-top: 6px;
+}
+
+.calendar-icon:hover{
+  color:#ffffff;
 }
 .menu-bars {
   margin-right: 14rem;
@@ -252,7 +248,21 @@ h3 {
     color: #ffffff;
   }
  
-  
+  .settings-button {
+
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    cursor: pointer;
+    gap: 10px;
+    color: #b8b8e2;
+    filter:drop-shadow(0.5px 0px 5px rgb(92, 114, 225));
+    path {
+      stroke-width: 0.5px ;
+    }
+    
+  }
 
   
   /* Base styles for the iframe */
@@ -266,6 +276,7 @@ h3 {
 
 .lofi-video-iframe.work-border {
   border: 3px solid #F44336; /* Red for work mode */
+  border-radius: 5px ;
   filter:drop-shadow(0.5px 0px 5px rgb(237, 62, 62));
 }
 

@@ -7,51 +7,102 @@
       @import url('https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap');
       @import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Anton&family=M+PLUS+Rounded+1c&family=Major+Mono+Display&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Playwrite+VN:wght@100..400&display=swap');
 
+      html, body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+      }
       body {
-        width: 500px;
+        width: 420px;
         height: 500px;
         font-family: 'Amatic SC';
-        background: linear-gradient(90deg, #454084,#2d2869,#454084);;
+        background: #26235a;
         color: rgb(255, 255, 255);
-        font-size: 30px;
-        
+        font-size: 30px;  
+        border: 3px solid #413f7c;
+        border-radius: 10px;
+        box-sizing: border-box;
         
       }
+      .popup-container {
+        width: 100%;
+        height: 100%;
+        padding: 10px; /* Space between border and content */
+        box-sizing: border-box; /* Ensures proper sizing */
+      }
+
       h3 {
+        padding: 10px;
         font-family: 'Amatic SC';
         color: rgb(255, 255, 255);
         font-size: 50px;
         margin-top: 0px;
-        border-bottom: 2px solid white;
-        border-width: 100%;
+        border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+       
+        
         
       }
-      
+      #check{
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-top: -60px;
+        padding: 10px;
+      }
+
+      #manage {
+        margin: 0; 
+        transform: translateY(1px);
+        transform: scale(2);
+        background: none;
+        color: #6064a4;
+      }
+
+      input[type="checkbox"] {
+        	accent-color: #1a1e73;
+        	color: #6064a4;
+    	}
       p {
-        margin-top: -20px;
+        
         font-family: 'Amatic SC';
         font-weight: bold;
         font-size: 30px;
       }
-      #timerLink {
-        width: 100%;
+
+      #timer{
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-top: -75px;
+        margin-bottom: -20px;
         padding: 10px;
+      }
+      h6{
+        font-family: 'Amatic SC';
+        font-weight: bold;
+        font-size: 25px;
+        
+      }
+     
+      #timerLink {
+        margin: 0;
+        height:35px;
+        width: 200px;
         background-color: #1a1e73;
         color: white;
         filter:drop-shadow(0.5px 0px 5px rgb(116, 131, 208));
         border: none;
         cursor: pointer;
-        border-radius: 40px;
-        margin-top: 0px;
-        margin-bottom: 20px;
+        border-radius: 10px;
        
       }
       label {
-        
         display: block;
-        margin-top: 5px;
+        margin-top: -5px;
         font-family: 'Amatic SC';
         font-weight: bold;
+        padding: 10px;
       }
 
       #timerLink:hover {
@@ -59,10 +110,12 @@
       }
 
       textarea {
-        width: 490px;
+        width: 380px;
         height: 80px;
+        justify-content: center;
+        margin-left: 10px;
         margin-bottom: 10px;
-        padding: 5px;
+        padding: 10px;
         font-family: Arial, Helvetica, sans-serif;
         font-size: 15px;
         filter:drop-shadow(0.5px 0px 5px rgb(92, 114, 225));
@@ -85,22 +138,30 @@
     </style>
   </head>
   <body>
-    <h3>Site Blocker</h3>
+    <div class="popup-container">
+      <h3>Site Blocker</h3>
+      <div id="check">
+        <p>Want the blocker to sync with the timer?</p>
+        <input type="checkbox" id="manage">
+      </div>
+      <div id="timer">
+        <h6>Manage your timer </h6>
+        <button id="timerLink">Go to Timer Page</button>
+      </div>
+      
 
+      <label>Blocked Sites:</label>
+      <textarea id="BlockSitesInput" placeholder="Enter blocked sites here one per line"></textarea>
+
+      <label id="allowedLabel">Allowed Sites:</label>
+      <textarea id="AllowSitesInput" placeholder="Enter Allowed sites here one per line"></textarea>
+
+      <button id="saveButton">Save Settings</button>
+
+      <script src="popup.js"></script>
+
+      </div>
     
-
-    <div><p>Manage your Pomodoro timer</p></div>
-    <button id="timerLink">Go to Timer Page</button>
-
-    <label>Blocked Sites:</label>
-    <textarea id="BlockSitesInput" placeholder="Enter blocked sites here one per line"></textarea>
-
-    <label id="allowedLabel">Allowed Sites:</label>
-    <textarea id="AllowSitesInput" placeholder="Enter Allowed sites here one per line"></textarea>
-
-    <button id="saveButton">Save Settings</button>
-
-    <script src="popup.js"></script>
   </body>
 
 
