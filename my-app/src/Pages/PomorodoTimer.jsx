@@ -12,8 +12,11 @@ import {Modal} from "../Componenets/Modal.jsx";
 import SettingsContext from '../Componenets/settingsContext'
 import soundFile from '../Componenets/mixkit-relaxing-bell-chime-3109.wav';
 import { VscTasklist } from "react-icons/vsc";
-
-
+import {Link} from "react-router-dom"
+import * as AiIcons from "react-icons/ai";
+import ToDoModal from "../Componenets/ToDoModal.js";
+import { FaCalendarAlt } from "react-icons/fa";
+import {Calendar} from "../Componenets/Calendar.jsx"
 
 
 const renderTime = ({ remainingTime }) => {
@@ -48,6 +51,8 @@ function PomorodoTimer() {
 
   const [headerText,setHeaderText]=useState("");
   const[secondsLeft,setSecondsLeft]=useState(0);
+
+  const[showCalendar,setShowCalendar]=useState(false);
 
   const [remainingTime, setRemainingTime] = useState(workMinutes * 60);
   const [timerKey, setTimerKey] = useState(0);
@@ -114,6 +119,16 @@ function PomorodoTimer() {
     setIsPaused(false);
   }
 
+  //close calendar 
+  const close =() => {
+    setShowCalendar(false);
+
+  }
+  // To do list --->
+  const[sidebar,setSidebar]=useState(false);
+
+  
+
   const phrases = [
     "“The question isn’t who is going to let me; it’s who is going to stop me.” ",
     "“Never allow a person to tell you no, who doesn’t have the power to say yes.”",
@@ -130,6 +145,9 @@ function PomorodoTimer() {
     "'It always seems impossible until it's done.'",
     "“You can fool everyone else, but you can’t fool your own mind.”",
     "“Don’t let yesterday take up too much of today.”",
+    "“We will either find a way or make one.” ",
+    "“The man who moves a mountain begins by carrying away small stones.“",
+    "“Success is the progressive realization of a worthy goal or ideal.”",
 
   ];
 
@@ -142,7 +160,6 @@ function PomorodoTimer() {
   },[]);
 
   return (
-
     <div className=" timer">
       <div className = "app-name"> 
         <h1>
@@ -150,13 +167,26 @@ function PomorodoTimer() {
         </h1>
       </div>
 
-      <div className='task'>
-      <VscTasklist
-        size={55} 
-      />
-      </div>
 
-      <div class="quoteBox">
+      <div className='navbars'>
+        <FaCalendarAlt className='calendar-icon'
+          size={42}
+          onClick={() => {
+            setShowCalendar(true);
+          }}
+        />
+        <VscTasklist className="task-icon" 
+          size={55} 
+          onClick={() => {
+            setSidebar(true);
+          }}/>
+          
+        
+      </div>
+      {showCalendar && <Calendar close = {close} />}
+      {sidebar && <ToDoModal sidebar={sidebar} setSidebar={setSidebar} />}
+
+    <div class="quoteBox">
       <h3>
         {headerText}
       </h3>
@@ -264,14 +294,13 @@ function PomorodoTimer() {
       <div className={`lofi-video-iframe ${mode === 'work' ? 'work-border' : 'break-border'}`}>
         
       <iframe
-       
-       
-       src={`${videoURL}?autoplay=${isPlaying ? 1 : 0}`}
-      title="peaceful piano radio 🎹 music to focus/study to" 
-      frameborder="0" 
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-      referrerpolicy="strict-origin-when-cross-origin" 
-      allowfullscreen></iframe>
+        src={`${videoURL}?autoplay=${isPlaying ? 1 : 0}`}
+        title="peaceful piano radio 🎹 music to focus/study to" 
+        frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+        referrerpolicy="strict-origin-when-cross-origin" 
+        allowfullscreen
+      ></iframe>
       </div>
 
     </div>

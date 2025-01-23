@@ -4,9 +4,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Anton&family=M+PLUS+Rounded+1c&family=Major+Mono+Display&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Playwrite+VN:wght@100..400&display=swap');
 body {
    font-family: 'Amatic SC';
-    background: linear-gradient(90deg, #454084, #1e1a4a, #0c0749,#454084);;
-    color: rgb(255, 255, 255);
-    padding: 20px;
+  background: linear-gradient(90deg, #454084, #1e1a4a, #0c0749,#454084);;
+  color: rgb(255, 255, 255);
+    
 }
 
 h1{
@@ -17,20 +17,84 @@ h1{
   text-align: left;
   margin-left: -420px;
   filter:drop-shadow(0.5px 0px 5px rgb(92, 114, 225));
-  
-
 }
 
-.task{
-  gap: 10px;
+.navbars{
+  display: flex;
+  gap: 20px;
   cursor: pointer;
-  color: #b8b8e2;
+  color: #ffffff;
   filter:drop-shadow(0.5px 0px 5px rgb(92, 114, 225));
   size: 100px;
-  margin-right: -785px;
+  margin-right: -700px;
   margin-top: -45px;
   margin-bottom: -10px;
+  
+  
 }
+
+
+
+.task-icon{
+  color: #d1d1e3;
+  filter:drop-shadow(0.5px 0px 3px rgb(92, 114, 225));
+
+}
+
+.task-icon:hover{
+  color:#ffffff;
+}
+
+.calendar-icon{
+  color: #d1d1e3;
+  filter:drop-shadow(0.5px 0px 3px rgb(92, 114, 225));
+  margin-top: 6px;
+}
+
+.calendar-icon:hover{
+  color:#ffffff;
+}
+.menu-bars {
+  margin-right: 14rem;
+  
+  
+}
+
+.nav-menu {
+  background-color: #ecf1ff;
+  width: 150px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  top: 0;
+  position: fixed;
+  right: -300px;
+  z-index: 1000;
+  transition: 850ms;
+}
+
+.nav-menu-active {
+  right: 0px;
+  position:absolute; 
+  transition: 350ms;
+ 
+}
+
+.navbar-toggle {
+  background-color: #1d1860;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  
+  justify-content: flex-start;
+}
+
+span {
+  margin-right: 16px;
+  
+}
+
+
 
 h3 {
     font-family: 'Amatic SC';
@@ -212,6 +276,7 @@ h3 {
 
 .lofi-video-iframe.work-border {
   border: 3px solid #F44336; /* Red for work mode */
+  border-radius: 5px ;
   filter:drop-shadow(0.5px 0px 5px rgb(237, 62, 62));
 }
 
