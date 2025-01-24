@@ -16,7 +16,7 @@ import {Link} from "react-router-dom"
 import * as AiIcons from "react-icons/ai";
 import ToDoModal from "../Componenets/ToDoModal.js";
 import { FaCalendarAlt } from "react-icons/fa";
-import {Calendar} from "../Componenets/Calendar.jsx"
+import {Calendar} from "../Componenets/Calendar.tsx"
 
 
 const renderTime = ({ remainingTime }) => {

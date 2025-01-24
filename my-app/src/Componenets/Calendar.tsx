@@ -1,21 +1,28 @@
 import React from 'react';
 import styles from './calendar.module.css';
 import {RiCloseLine} from "react-icons/ri"; // close icon 
-import {createCalendar, createViewMonthGrid} from '@schedule-x/calendar'
-import '@schedule-x/theme-default/dist/index.css'
+import {ScheduleXCalendar,useCalendarApp} from "@schedule-x/react";
+import {createViewWeek,createViewMonthGrid, CalendarApp} from "@schedule-x/calendar";
+import '@schedule-x/theme-default/dist/calendar.css'
 
 export const Calendar = ({close}) => {
-    const calendar= createCalendar ({
-        views: [createViewMonthGrid()],
-        events:[
+    const calendar :CalendarApp = useCalendarApp({
+        views: [createViewWeek(),createViewMonthGrid()],
+        events: [
             {
-                id:1,
-                title:'Coffee',
-                start:'2023-12-04 10:05',
-                end: '2023-12-04 10:35',
+            id: 1,
+            title: 'Event',
+            start: '2025-01-04 10:05',
+            end: '2025-01-04 10:35',
             },
         ],
-    })
+        selectedDate:'2025-01-04'
+
+    });
+
+    
+    calendar.setTheme('dark')
+
     return (
         <div className={styles.modalBack}>
             <div className={styles.modalContainer}>
@@ -25,7 +32,9 @@ export const Calendar = ({close}) => {
                     <RiCloseLine size={24} />
                     </button>
                 </div>
-
+                <div>
+                    <ScheduleXCalendar calendarApp={calendar} />
+                </div>
             </div>
 
         </div>
