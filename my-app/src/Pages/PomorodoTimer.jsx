@@ -163,7 +163,7 @@ function PomorodoTimer() {
     <div className=" timer">
       <div className = "app-name"> 
         <h1>
-          Focus Coach
+          Your Study Space
         </h1>
       </div>
 

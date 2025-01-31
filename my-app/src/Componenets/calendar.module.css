@@ -16,21 +16,22 @@
     color: #fff; /* Text color */
     border-radius: 10px;
     padding: 2rem;
-    width: 1300px;
-    height:700px;
+    width: 1400px;
+    height:650px;
     max-width: 90%; /* Ensure modal is responsive */
     filter:drop-shadow(0.0px 0px 7px rgb(72, 81, 125));
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    overflow-y: auto;
   }
 
-  
-
-  .sx-calendar {
-    width: 90%; /* Change calendar width */
-    height: 600px; /* Change calendar height */
-    margin: 0 auto;
+  .sx-react-calendar-wrapper {
+    width: 1200px;
+    max-width: 100vw;
+    height: 800px;
+    max-height: 90vh;
   }
   
+
   .modalHeader {
     display: flex;
     justify-content: space-between;

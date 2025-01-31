@@ -11,9 +11,9 @@ body {
 
 h1{
   font-family: 'Pattaya',sans-serif;
-  font-size: 60px;
+  font-size: 50px;
   font-weight: 400;
-  margin-bottom: -25px;
+  margin-bottom: -15px;
   text-align: left;
   margin-left: -420px;
   filter:drop-shadow(0.5px 0px 5px rgb(92, 114, 225));
