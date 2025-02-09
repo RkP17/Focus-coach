@@ -16,7 +16,7 @@ import {Link} from "react-router-dom"
 import * as AiIcons from "react-icons/ai";
 import ToDoModal from "../Componenets/ToDoModal.js";
 import { FaCalendarAlt } from "react-icons/fa";
-import {Calendar} from "../Componenets/Calendar.jsx"
+import {CalendarCoponent} from "../Componenets/Calendar.jsx"
 
 
 const renderTime = ({ remainingTime }) => {
@@ -183,7 +183,7 @@ function PomorodoTimer() {
           
         
       </div>
-      {showCalendar && <Calendar close = {close} />}
+      {showCalendar && <CalendarCoponent close = {close} />}
       {sidebar && <ToDoModal sidebar={sidebar} setSidebar={setSidebar} />}
 
     <div class="quoteBox">

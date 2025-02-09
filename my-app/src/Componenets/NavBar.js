@@ -4,7 +4,7 @@ import * as AiIcons from "react-icons/ai";
 import {Link} from "react-router-dom"
 import { SidebarData } from './sidebardata';
 import './navbar.css';
-import { IconContext } from 'react-icons';
+import { IconContext } from 'react-icons/lib';
 
 
 

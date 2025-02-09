@@ -1,21 +1,19 @@
 import React from 'react';
 import styles from './calendar.module.css';
 import {RiCloseLine} from "react-icons/ri"; // close icon 
-import {createCalendar, createViewMonthGrid} from '@schedule-x/calendar'
-import '@schedule-x/theme-default/dist/index.css'
 
-export const Calendar = ({close}) => {
-    const calendar= createCalendar ({
-        views: [createViewMonthGrid()],
-        events:[
-            {
-                id:1,
-                title:'Coffee',
-                start:'2023-12-04 10:05',
-                end: '2023-12-04 10:35',
-            },
-        ],
-    })
+//Calendar 
+import Calendar from "@toast-ui/react-calendar";
+import "@toast-ui/calendar/dist/toastui-calendar.min.css";
+import { CalendarContainer } from 'react-datepicker';
+
+
+// month view, week view, day view, schedule view
+// be able to add events aswell 
+
+export const CalendarCoponent = ({close}) => {
+    const calendarRef = React.createRef();
+    
     return (
         <div className={styles.modalBack}>
             <div className={styles.modalContainer}>
@@ -25,6 +23,29 @@ export const Calendar = ({close}) => {
                     <RiCloseLine size={24} />
                     </button>
                 </div>
+                    <Calendar
+                        ref={calendarRef}
+                        height="800px"
+                        view="month" // Options: month, week, day
+                        useDetailPopup={true}
+                        useFormPopup={true}
+                        calendars={[
+                        {
+                            id: "1",
+                            name: "Personal",
+                            color: "#ffffff",
+                            bgColor: "#ff5583",
+                            dragBgColor: "#ff5583",
+                            borderColor: "#ff5583",
+                        },
+                        ]} 
+                        template= {{
+                            monthDayname: function(dayname){
+                              return '<span class="calendar-week-dayname-name">' + dayname.label + '</span>';
+                            }
+                        }}
+                        
+                    />
 
             </div>
 
@@ -33,4 +54,4 @@ export const Calendar = ({close}) => {
 
 }
 
-export default Calendar;
+export default CalendarCoponent;
