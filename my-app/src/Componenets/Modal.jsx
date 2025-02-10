@@ -9,10 +9,10 @@ import SettingsContext from './settingsContext';
 
 
 
-export const Modal = ({closeModal}) => {
+export const Modal = ({closeModal,setUrl}) => {
   //const settingsInfo = useContext(SettingsContext);
   const { workMinutes, setWorkMinutes, breakMinutes, setBreakMinutes } = useContext(SettingsContext);
-  const[url,setUrl] = React.useState(''); // for spotify url
+  
 
     return(
         <div className={styles.modalBack}>
@@ -53,7 +53,6 @@ export const Modal = ({closeModal}) => {
                 className='Spotify-url' 
                 type='text' 
                 placeholder='Enter Spotify URL' 
-                value={url}
                 onChange={(e) => setUrl(e.target.value)}
               />
             </div>

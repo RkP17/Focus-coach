@@ -12,11 +12,11 @@ import {Modal} from "../Componenets/Modal.jsx";
 import SettingsContext from '../Componenets/settingsContext'
 import soundFile from '../Componenets/mixkit-relaxing-bell-chime-3109.wav';
 import { VscTasklist } from "react-icons/vsc";
-import {Link} from "react-router-dom"
-import * as AiIcons from "react-icons/ai";
 import ToDoModal from "../Componenets/ToDoModal.js";
 import { FaCalendarAlt } from "react-icons/fa";
 import {Calendar} from "../Componenets/Calendar.jsx"
+import axios from 'axios'; // for spotify
+import { BiSolidCommentError } from 'react-icons/bi'; // Correct import for BiSolidCommentError
 
 
 const renderTime = ({ remainingTime }) => {
@@ -61,6 +61,10 @@ function PomorodoTimer() {
   
   const videoURL = "https://www.youtube.com/embed/TtkFsfOP9QI";
 
+  // postify
+  const[url,setUrl] = React.useState(''); // for spotify url
+  const[playlist,setPlaylist]=React.useState(null); // for spotify playlist
+
   const[input,setInput]=useState('');
   useEffect(() => {
     modeRef.current = mode;
@@ -85,6 +89,36 @@ function PomorodoTimer() {
   }, [isPlaying]);
 
     
+  // fetch the spotify playlist
+  const fetchPlaylist = async () => {
+    const token = 'BQCw5ejmJcWE3fGu4pnDQPAGdAzsuv-3YkHOW1ucAilEQFI8sCqpHlDu4Emj0_efvqD300CLRQIixhC64Eq-QoQa0ECQHnt1v3pJ3B2yPJ2xzoR-GVDQtlzoplOKv5EGeiYRHmunHgQKVZB-tcep-34-MCcKcB8qDnnQdceZaDImFR5Tde6q7eH4Uomhps6iBxQSNRnYzyonJf2tDTQK_suLlRmD8X9Yk-qcq9sxEbmV4pJc9KDnndHB6SXwLruRzqQ0rMvUXjw9a3rOTdCRRXDsvw6Mc7vimKtXvOAsf8PTwEwrlHaws1lS';
+    const playlistId = url.split('/').pop(); // the format of the spotify url just need the last aprt of the url
+
+    try{
+      const response = await axios.get(`https://api.spotify.com/v1/playlists/${playlistId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setPlaylist(response.data);
+    }catch(error){
+      console.error("failed to fetch the playlist")
+      console.error(error);
+    }
+  }
+
+
+  // fetch the playlist when the url changes
+  useEffect(() => {
+    if(url && url.includes('spotify.com')){
+      fetchPlaylist();
+    }
+  },[url]);
+
+  // Determine the media URL
+  const mediaSrc = url.includes("spotify.com")
+    ? `https://open.spotify.com/embed/playlist/${url.split('/').pop()}`
+    : "https://www.youtube.com/embed/TtkFsfOP9QI"; // default to YouTube if no Spotify URL
 
 
   // create the fiunction switch mode 
@@ -204,8 +238,6 @@ function PomorodoTimer() {
           
         />
         
-        
-
       </div>
 
       <div className="timer-wrapper">
@@ -298,7 +330,7 @@ function PomorodoTimer() {
           </div>
 
           {/* Modal */}
-          {showModal && <Modal closeModal={closeModal} />}
+          {showModal && <Modal closeModal={closeModal} setUrl={setUrl} />}
           </SettingsContext.Provider>
           
           
@@ -306,16 +338,16 @@ function PomorodoTimer() {
       </div>
       
       
-      <div className={`lofi-video-iframe ${mode === 'work' ? 'work-border' : 'break-border'}`}>
+      {/*<div className={`lofi-video-iframe ${mode === 'work' ? 'work-border' : 'break-border'}`}>*/}
         
-      <iframe
-        src={`${videoURL}?autoplay=${isPlaying ? 1 : 0}`}
-        title="peaceful piano radio 🎹 music to focus/study to" 
-        frameborder="0" 
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-        referrerpolicy="strict-origin-when-cross-origin" 
-        allowfullscreen
-      ></iframe>
+      <div className="media-container">
+        <iframe
+          src={mediaSrc}
+          title="Media Player"
+          frameBorder="0"
+          allow="encrypted-media"
+          allowFullScreen
+        ></iframe>
       </div>
 
     </div>
