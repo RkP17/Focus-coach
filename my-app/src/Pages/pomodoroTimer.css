@@ -106,8 +106,6 @@ h3 {
     text-align: center;
     line-height: 1.5;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-    
-
 }
 
 .quoteBox {
@@ -287,22 +285,28 @@ h3 {
 
   
   /* Base styles for the iframe */
-.lofi-video-iframe{
-  
-  height: 156px;
-  
-  transition: border-color 0.3s ease;
-}
 
 
-.lofi-video-iframe.work-border {
+.media-container-iframe.work-border {
   border: 3px solid #F44336; /* Red for work mode */
   border-radius: 5px ;
-  filter:drop-shadow(0.5px 0px 5px rgb(237, 62, 62));
+  filter:drop-shadow(0.5px 0px 15px rgb(237, 62, 62));
 }
 
 /* Break Mode: Border color for the iframe when it's break mode */
-.lofi-video-iframe.break-border {
-  border: 3px solid #76c976; /* Green for break mode */
+.media-container-iframe.break-border {
+  border: 3px solid #76c976 !important; /* Green for break mode */
+  border-radius: 5px ;
   filter:drop-shadow(0.5px 0px 5px rgb(137, 197, 94));
+}
+
+.media-container-iframe iframe {
+  width: 100%;
+  max-width: 600px; /* Adjust as needed */
+  border-radius: 5px;
+
+  
+  height: 152px;
+  
+  transition: border-color 0.3s ease;
 }

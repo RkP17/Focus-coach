@@ -118,7 +118,7 @@ function PomorodoTimer() {
   // Determine the media URL
   const mediaSrc = url.includes("spotify.com")
     ? `https://open.spotify.com/embed/playlist/${url.split('/').pop()}`
-    : "https://www.youtube.com/embed/TtkFsfOP9QI"; // default to YouTube if no Spotify URL
+    : "https://www.youtube.com/embed/phRZKH1tQsQ"; // default to YouTube if no Spotify URL
 
 
   // create the fiunction switch mode 
@@ -340,13 +340,14 @@ function PomorodoTimer() {
       
       {/*<div className={`lofi-video-iframe ${mode === 'work' ? 'work-border' : 'break-border'}`}>*/}
         
-      <div className="media-container">
+      <div className={`media-container-iframe ${mode === "work" ? "work-border" : "break-border"}`}>
         <iframe
-          src={mediaSrc}
+          src={`${mediaSrc}?autoplay=${isPlaying ? 1 : 0}`}
           title="Media Player"
           frameBorder="0"
-          allow="encrypted-media"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
           allowFullScreen
+          
         ></iframe>
       </div>
 
