@@ -12,6 +12,8 @@ import SettingsContext from './settingsContext';
 export const Modal = ({closeModal}) => {
   //const settingsInfo = useContext(SettingsContext);
   const { workMinutes, setWorkMinutes, breakMinutes, setBreakMinutes } = useContext(SettingsContext);
+  const[url,setUrl] = React.useState(''); // for spotify url
+
     return(
         <div className={styles.modalBack}>
           <div className={styles.modalContainer}>
@@ -43,6 +45,19 @@ export const Modal = ({closeModal}) => {
                   max={120}  
                 /> 
             </div>
+
+            <div className='Music-settings'>
+              <h3>Spotify</h3>
+              {/* Input for spotify if not then default is youtube video*/}
+              <input 
+                className='Spotify-url' 
+                type='text' 
+                placeholder='Enter Spotify URL' 
+                value={url}
+                onChange={(e) => setUrl(e.target.value)}
+              />
+            </div>
+
 
         </div>
 

@@ -61,6 +61,7 @@ function PomorodoTimer() {
   
   const videoURL = "https://www.youtube.com/embed/TtkFsfOP9QI";
 
+  const[input,setInput]=useState('');
   useEffect(() => {
     modeRef.current = mode;
   }, [mode]);
@@ -191,6 +192,20 @@ function PomorodoTimer() {
         {headerText}
       </h3>
      
+      </div>
+
+      <div className="TimerTask">
+        <input
+          className="task-input"
+          placeholder='What do you want to focus on in this session?'
+          type='text'
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          
+        />
+        
+        
+
       </div>
 
       <div className="timer-wrapper">
